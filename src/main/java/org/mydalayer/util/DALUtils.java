@@ -8,12 +8,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import org.mydalayer.cache.CacheKeyParam;
 
 /**
  * DAL工具类
@@ -58,37 +54,6 @@ public class DALUtils {
 	public static Map<String, Object> convertToMap(Object arg) {
 		return new HashMap<String, Object>();
 
-	}
-
-	/**
-	 * 功能描述：根据执行的DalClient方法名和方法参数数组计算出缓存key 输入参数：String类型，Object数组类型<按照参数定义顺序>
-	 * 
-	 * @param methodName
-	 *            ,params 返回值: String类型 <说明>
-	 * @return String
-	 * @throw 异常描述
-	 * @see 需要参见的其它内容
-	 */
-	@Deprecated
-	public static String getCacheKey(String methodName, Object[] params) {
-		if (params.length < 2) {// 因为用传参数组就需要前两个元素，所以传参数组大小不能小于2
-			logger.warn("The length of array param must not less than 2 . ");
-			return null;
-		}
-		Object[] paramArg = new Object[2];
-		if (methodName.equals("find")) {
-			paramArg[0] = ((Class<?>) params[0]).getName() + ".select";
-			paramArg[1] = params[1];
-		} else if (methodName.startsWith("queryFor")) {
-			paramArg[0] = params[0];
-			paramArg[1] = convertToMap(params[1]);
-		} else {
-			logger.warn("The methodName must being 'find' or start with 'queryFor' .");
-			return null;
-		}
-		int hashCode = HashCodeBuilder.reflectionHashCode(new CacheKeyParam(
-				methodName, paramArg));
-		return DigestUtils.md5Hex(String.valueOf(hashCode));
 	}
 
 	@Deprecated
@@ -167,7 +132,6 @@ public class DALUtils {
 		return null;
 	}
 
-	@Deprecated
 	public static byte[] computeMd5(String k) {
 		try {
 			MessageDigest md5 = MessageDigest.getInstance("MD5");

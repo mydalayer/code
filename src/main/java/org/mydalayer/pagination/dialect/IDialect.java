@@ -6,7 +6,7 @@ package org.mydalayer.pagination.dialect;
  * @author mydalayer#gmail.com
  * @version 1.0.0
  */
-public interface Dialect {
+public interface IDialect {
 
 	public String getLimitSqlString(String sql, int offset, int limit);
 

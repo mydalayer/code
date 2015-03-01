@@ -6,7 +6,7 @@ package org.mydalayer.pagination.dialect;
  * @author mydalayer#gmail.com
  * @version 1.0.0
  */
-public class MySQLDialect implements Dialect {
+public class MySQLDialect implements IDialect {
 
 	private static final String COUNT_ALIAS = "_COUNT_BLOCK_";
 
