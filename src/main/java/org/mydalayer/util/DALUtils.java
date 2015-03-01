@@ -21,8 +21,8 @@ import org.mydalayer.cache.CacheKeyParam;
  * @author mydalayer#gmail.com
  * @version 1.0.0
  */
-public class DalUtils {
-	private static Logger logger = LoggerFactory.getLogger(DalUtils.class);
+public class DALUtils {
+	private static Logger logger = LoggerFactory.getLogger(DALUtils.class);
 
 	private static final int NUM0 = 0;
 	private static final int NUM1 = 1;

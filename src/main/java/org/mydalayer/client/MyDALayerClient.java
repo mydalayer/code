@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.SqlParameter;
  * @author mydalayer#gmail.com
  * @version 1.0.0
  */
-public interface DalClient {
+public interface MyDALayerClient {
 
 	/**
 	 * 单表添加操作 返回Number类型的主键
