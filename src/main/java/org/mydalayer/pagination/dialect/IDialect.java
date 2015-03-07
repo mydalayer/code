@@ -8,8 +8,8 @@ package org.mydalayer.pagination.dialect;
  */
 public interface IDialect {
 
-	public String getLimitSqlString(String sql, int offset, int limit);
+  public String getLimitSqlString(String sql, int offset, int limit);
 
-	public String getCountSqlString(String sql);
+  public String getCountSqlString(String sql);
 
 }
