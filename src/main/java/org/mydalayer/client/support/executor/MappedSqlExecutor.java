@@ -417,7 +417,7 @@ public class MappedSqlExecutor extends JdbcTemplate {
    * @return 对象List
    */
   public <T> List<T> queryForList(String sqlId, Object param, Class<T> requiredType) {
-    return queryForlist(sqlId, DalUtils.convertToMap(param), requiredType);
+    return queryForList(sqlId, DalUtils.convertToMap(param), requiredType);
   }
 
   /**
@@ -427,8 +427,8 @@ public class MappedSqlExecutor extends JdbcTemplate {
    * @param sqlId ,paramMap，requiredType 返回值: list类型，元素为实体类型
    * @return 对象List
    */
-  public <T> List<T> queryForlist(String sqlId, Map<String, Object> paramMap, Class<T> requiredType) {
-    return this.queryForlist(sqlId, paramMap, new RowMapperFactory<T>(requiredType).getRowMapper());
+  public <T> List<T> queryForList(String sqlId, Map<String, Object> paramMap, Class<T> requiredType) {
+    return this.queryForList(sqlId, paramMap, new RowMapperFactory<T>(requiredType).getRowMapper());
   }
 
   /**
@@ -438,8 +438,8 @@ public class MappedSqlExecutor extends JdbcTemplate {
    * @param sqlId ,param，rowMapper 返回值: list类型，元素为实体类型
    * @return 对象List
    */
-  public <T> List<T> queryForlist(String sqlId, Object param, RowMapper<T> rowMapper) {
-    return queryForlist(sqlId, DalUtils.convertToMap(param), rowMapper);
+  public <T> List<T> queryForList(String sqlId, Object param, RowMapper<T> rowMapper) {
+    return queryForList(sqlId, DalUtils.convertToMap(param), rowMapper);
   }
 
   /**
@@ -449,7 +449,7 @@ public class MappedSqlExecutor extends JdbcTemplate {
    * @param sqlId ,paramMap，rowMapper 返回值: list类型，元素为实体类型
    * @return 对象List
    */
-  public <T> List<T> queryForlist(String sqlId, Map<String, Object> paramMap, RowMapper<T> rowMapper) {
+  public <T> List<T> queryForList(String sqlId, Map<String, Object> paramMap, RowMapper<T> rowMapper) {
 
     String sql = null;
 
@@ -478,8 +478,8 @@ public class MappedSqlExecutor extends JdbcTemplate {
    * @param sqlId ,param 返回值: list类型，元素为map类型
    * @return Map对象List
    */
-  public List<Map<String, Object>> queryForlist(String sqlId, Object param) {
-    return queryForlist(sqlId, DalUtils.convertToMap(param));
+  public List<Map<String, Object>> queryForList(String sqlId, Object param) {
+    return queryForList(sqlId, DalUtils.convertToMap(param));
   }
 
   /**
@@ -489,7 +489,7 @@ public class MappedSqlExecutor extends JdbcTemplate {
    * @param sqlId ,paramMap 返回值: list类型，元素为map类型
    * @return Map对象List
    */
-  public List<Map<String, Object>> queryForlist(String sqlId, Map<String, Object> paramMap) {
+  public List<Map<String, Object>> queryForList(String sqlId, Map<String, Object> paramMap) {
 
     String sql = null;
 
@@ -660,7 +660,7 @@ public class MappedSqlExecutor extends JdbcTemplate {
   }
 
   /**
-   * 日志信息
+   * 日志信息.
    */
   protected void logMessage(String method, String sql, Object object) {
     if (logger.isDebugEnabled()) {
@@ -671,7 +671,7 @@ public class MappedSqlExecutor extends JdbcTemplate {
   }
 
   /**
-   * 将MappedStatement中的其他参数配置到JdbcTemplate
+   * 将MappedStatement中的其他参数配置到JdbcTemplate.
    */
   protected void applyStatementSettings(MappedStatement stmt) {
     int fetchSize = stmt.getFetchSize();
@@ -715,13 +715,13 @@ public class MappedSqlExecutor extends JdbcTemplate {
     return null;
   }
 
-  protected void throwException(Exception e) {
-    if (e instanceof DataAccessException) {
-      throw (DataAccessException) e;
-    } else if (e instanceof RuntimeException) {
-      throw (RuntimeException) e;
+  protected void throwException(Exception ex) {
+    if (ex instanceof DataAccessException) {
+      throw (DataAccessException) ex;
+    } else if (ex instanceof RuntimeException) {
+      throw (RuntimeException) ex;
     } else {
-      throw new RuntimeException(e);
+      throw new RuntimeException(ex);
     }
 
   }

@@ -14,6 +14,12 @@ public class PaginationResult<T> {
 
   private final int count;
 
+  /**
+   * 构造方法.
+   * 
+   * @param result 查询返回结果
+   * @param count 查询返回条目数
+   */
   public PaginationResult(List<T> result, int count) {
     super();
     this.result = result;
