@@ -12,11 +12,11 @@ import java.lang.annotation.Target;
  * @author mydalayer#gmail.com
  * @version 1.0.0
  */
-@Target({ TYPE })
+@Target({TYPE})
 @Retention(RUNTIME)
 public @interface TableRoute {
 
-	/** 表名 */
-	String tableName();
+  /** 表名. */
+  String tableName();
 
 }
