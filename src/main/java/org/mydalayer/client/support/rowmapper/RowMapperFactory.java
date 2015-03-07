@@ -1,10 +1,11 @@
 package org.mydalayer.client.support.rowmapper;
 
-import java.util.Date;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.SingleColumnRowMapper;
+
+import java.util.Date;
 
 /**
  * 描述：映射类型工厂
@@ -19,6 +20,12 @@ public class RowMapperFactory<T> {
     this.requiredType = requiredType;
   }
 
+  /**
+   * 获取Spring RowMapper实现.
+   * 
+   * @param @return
+   * @return RowMapper实现
+   */
   public RowMapper<T> getRowMapper() {
     if (requiredType.equals(String.class) || Number.class.isAssignableFrom(requiredType)
         || requiredType.equals(Date.class)) {

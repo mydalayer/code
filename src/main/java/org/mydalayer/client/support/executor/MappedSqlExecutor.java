@@ -3,7 +3,7 @@ package org.mydalayer.client.support.executor;
 import org.mydalayer.client.support.Configuration;
 import org.mydalayer.client.support.MappedStatement;
 import org.mydalayer.client.support.rowmapper.RowMapperFactory;
-import org.mydalayer.util.Dalutils;
+import org.mydalayer.util.DalUtils;
 import org.mydalayer.util.ValueParser;
 
 import org.slf4j.Logger;
@@ -129,7 +129,7 @@ public class MappedSqlExecutor extends JdbcTemplate {
 
       Object key = paramMap.get(mappedStatement.getIdProperty());
       if (key == null || (key instanceof Number && ((Number) key).doubleValue() == 0.0d)) {
-        Dalutils.setProperty(entity, mappedStatement.getIdProperty(), keyHolder.getKey());
+        DalUtils.setProperty(entity, mappedStatement.getIdProperty(), keyHolder.getKey());
         key = keyHolder.getKey();
       }
       logMessage("persist", insertSql, paramMap);
@@ -312,7 +312,7 @@ public class MappedSqlExecutor extends JdbcTemplate {
    */
   public <T> T queryForObject(String sqlId, Object param, Class<T> requiredType) {
     // 实体参数会先转为map，再调用重载方法
-    return this.queryForObject(sqlId, Dalutils.convertToMap(param), requiredType);
+    return this.queryForObject(sqlId, DalUtils.convertToMap(param), requiredType);
   }
 
   /**
@@ -340,7 +340,7 @@ public class MappedSqlExecutor extends JdbcTemplate {
    */
   public <T> T queryForObject(String sqlId, Object param, RowMapper<T> rowMapper) {
     // 实体类型转为实体映射，再调用重载方法
-    return this.queryForObject(sqlId, Dalutils.convertToMap(param), rowMapper);
+    return this.queryForObject(sqlId, DalUtils.convertToMap(param), rowMapper);
   }
 
   /**
@@ -380,7 +380,7 @@ public class MappedSqlExecutor extends JdbcTemplate {
    * @return Map对象
    */
   public Map<String, Object> queryForMap(String sqlId, Object param) {
-    return this.queryForMap(sqlId, Dalutils.convertToMap(param));
+    return this.queryForMap(sqlId, DalUtils.convertToMap(param));
   }
 
   /**
@@ -417,7 +417,7 @@ public class MappedSqlExecutor extends JdbcTemplate {
    * @return 对象List
    */
   public <T> List<T> queryForList(String sqlId, Object param, Class<T> requiredType) {
-    return queryForlist(sqlId, Dalutils.convertToMap(param), requiredType);
+    return queryForlist(sqlId, DalUtils.convertToMap(param), requiredType);
   }
 
   /**
@@ -439,7 +439,7 @@ public class MappedSqlExecutor extends JdbcTemplate {
    * @return 对象List
    */
   public <T> List<T> queryForlist(String sqlId, Object param, RowMapper<T> rowMapper) {
-    return queryForlist(sqlId, Dalutils.convertToMap(param), rowMapper);
+    return queryForlist(sqlId, DalUtils.convertToMap(param), rowMapper);
   }
 
   /**
@@ -459,7 +459,7 @@ public class MappedSqlExecutor extends JdbcTemplate {
       sql = stmt.getBoundSql(paramMap);
 
       logMessage("queryForList(3 paramter)", sql, paramMap);
-      List<T> list = execution.query(sql, Dalutils.mapIfnull(paramMap), rowMapper);
+      List<T> list = execution.query(sql, DalUtils.mapIfnull(paramMap), rowMapper);
       logMessage("queryForList(3 paramter)", sql, paramMap);
 
       return list;
@@ -479,7 +479,7 @@ public class MappedSqlExecutor extends JdbcTemplate {
    * @return Map对象List
    */
   public List<Map<String, Object>> queryForlist(String sqlId, Object param) {
-    return queryForlist(sqlId, Dalutils.convertToMap(param));
+    return queryForlist(sqlId, DalUtils.convertToMap(param));
   }
 
   /**
@@ -499,7 +499,7 @@ public class MappedSqlExecutor extends JdbcTemplate {
       sql = stmt.getBoundSql(paramMap);
 
       logMessage("queryForList(2 paramter)", sql, paramMap);
-      List<Map<String, Object>> list = execution.queryForList(sql, Dalutils.mapIfnull(paramMap));
+      List<Map<String, Object>> list = execution.queryForList(sql, DalUtils.mapIfnull(paramMap));
       logMessage("queryForList(2 paramter)", sql, paramMap);
 
       return list;
@@ -521,7 +521,7 @@ public class MappedSqlExecutor extends JdbcTemplate {
    * @see 需要参见的其它内容
    */
   public int execute(String sqlId, Object param) {
-    return this.execute(sqlId, Dalutils.convertToMap(param));
+    return this.execute(sqlId, DalUtils.convertToMap(param));
     // return this.execute(sqlId, ValueParser.parser(param));
   }
 
@@ -570,11 +570,11 @@ public class MappedSqlExecutor extends JdbcTemplate {
       sql = stmt.getBoundSql(paramMap);
       int result = 0;
       if (keyHolder != null) {
-        execution.update(sql, new MapSqlParameterSource(Dalutils.mapIfnull(paramMap)), keyHolder);
+        execution.update(sql, new MapSqlParameterSource(DalUtils.mapIfnull(paramMap)), keyHolder);
         logMessage("execute", sql, paramMap);
         result = keyHolder.getKey() == null ? 0 : keyHolder.getKey().intValue();
       } else {
-        result = execution.update(sql, Dalutils.mapIfnull(paramMap));
+        result = execution.update(sql, DalUtils.mapIfnull(paramMap));
         logMessage("execute", sql, paramMap);
 
       }
@@ -635,7 +635,7 @@ public class MappedSqlExecutor extends JdbcTemplate {
     String sql = null;
 
     try {
-      Map<String, Object> paramMapTmp = Dalutils.mapIfnull(paramMap);
+      Map<String, Object> paramMapTmp = DalUtils.mapIfnull(paramMap);
       MappedStatement stmt = configuration.getMappedStatement(sqlId, true);
       this.applyStatementSettings(stmt);
       sql = stmt.getBoundSql(paramMap);

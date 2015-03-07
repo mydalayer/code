@@ -3,7 +3,7 @@ package org.mydalayer.parsing.support.method;
 import freemarker.template.TemplateMethodModelEx;
 import freemarker.template.TemplateModelException;
 
-import org.mydalayer.util.Dalutils;
+import org.mydalayer.util.DalUtils;
 
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class Hash implements TemplateMethodModelEx {
         throw new TemplateModelException(
             "can not get route_param in tableRouteMethod hash(main_name,route_param,table_number) " + "from paramMap");
       }
-      long hashCode = Dalutils.HashAlgorithm.KETAMA_HASH.hash(Dalutils.computeMd5(paramValue), 0);
+      long hashCode = DalUtils.HashAlgorithm.KETAMA_HASH.hash(DalUtils.computeMd5(paramValue), 0);
       tableName = tableName + hashCode % number;
       return tableName.toUpperCase();
 

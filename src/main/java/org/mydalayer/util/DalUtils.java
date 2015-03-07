@@ -18,7 +18,7 @@ import java.util.Map;
  * @author mydalayer#gmail.com
  * @version 1.0.0
  */
-public class Dalutils {
+public class DalUtils {
 
   private static final int NUM0 = 0;
   private static final int NUM1 = 1;
@@ -30,7 +30,7 @@ public class Dalutils {
   private static final int NUM24 = 24;
   private static final int NUM_0XFF = 0xFF;
 
-  private static Logger LOGGER = LoggerFactory.getLogger(Dalutils.class);
+  private static Logger LOGGER = LoggerFactory.getLogger(DalUtils.class);
 
   /**
    * 把参数转成对象数组.

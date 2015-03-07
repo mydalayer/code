@@ -1,10 +1,11 @@
 package org.mydalayer.client.support;
 
-import java.util.Map;
 
 import com.suning.framework.dal.client.support.Configuration;
 import com.suning.framework.dal.client.support.SqlCommandType;
 import com.suning.framework.dal.parsing.FreeMakerParser;
+
+import java.util.Map;
 
 /**
  *
@@ -126,10 +127,6 @@ public final class MappedStatement {
 
   public void setFetchSize(int fetchSize) {
     this.fetchSize = fetchSize;
-  }
-
-  public void setMaxRows(int maxRows) {
-    this.maxRows = maxRows;
   }
 
   public Boolean getIsGenerator() {

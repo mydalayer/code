@@ -1,14 +1,14 @@
 package org.mydalayer.client.support;
 
+import org.springframework.util.Assert;
+
 import java.util.Collection;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-
-import org.springframework.util.Assert;
 
 /**
  *
@@ -19,7 +19,7 @@ public class Configuration {
 
   protected boolean cacheEnabled = true;
 
-  /** 默认jdbcTimeOut值 */
+  /** 默认jdbcTimeOut值. */
   protected Integer defaultStatementTimeout = 100;
 
   protected Properties variables = new Properties();
@@ -76,12 +76,11 @@ public class Configuration {
   }
 
   /**
-   * 功能描述：根据sqlId，查询sql状态
+   * 根据sqlId，查询sql状态.
    * 
-   * @param 参数说明 返回值: 类型 <说明>
-   * @return 返回值
-   * @throw 异常描述
-   * @see 需要参见的其它内容
+   * @param id sqlId
+   * @param validation 是否验证
+   * @return sql对象
    */
   public MappedStatement getMappedStatement(String id, boolean validation) {
     MappedStatement mappedStatement = mappedStatements.get(id);
@@ -92,7 +91,6 @@ public class Configuration {
   }
 
   public Collection<MappedStatement> getMappedStatements() {
-    // buildAllStatements();
     return mappedStatements.values();
   }
 
@@ -119,7 +117,7 @@ public class Configuration {
   /**
    * Extracts namespace from fully qualified statement id.
    * 
-   * @param statementId
+   * @param statementId namespace.id
    * @return namespace or null when id does not contain period.
    */
   public String extractNamespace(String statementId) {
